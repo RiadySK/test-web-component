@@ -17,6 +17,7 @@ var __decorateClass = (decorators, target, key, kind) => {
 let KaskusText = class extends LitElement {
   constructor() {
     super(...arguments);
+    this.text = "primary";
     this.color = "primary";
     this.variant = "paragraph";
     this.size = "medium";
@@ -28,11 +29,11 @@ let KaskusText = class extends LitElement {
     switch (this.variant) {
       case "paragraph":
         return html`
-          <p class="${this.getClass()}">${this.innerHTML}</p>
+          <p class="${this.getClass()}">${this.text || this.innerHTML}</p>
         `;
       case "caption":
         return html`
-          <caption class="${this.getClass()}">${this.innerHTML}</caption>
+          <caption class="${this.getClass()}">${this.text || this.innerHTML}</caption>
         `;
       default:
         return null;
@@ -81,6 +82,9 @@ KaskusText.styles = css`
       display:inline;
     }
   `;
+__decorateClass([
+  property()
+], KaskusText.prototype, "text", 2);
 __decorateClass([
   property()
 ], KaskusText.prototype, "color", 2);

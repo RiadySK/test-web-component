@@ -17,6 +17,7 @@ var __decorateClass = (decorators, target, key, kind) => {
 let KaskusHeader = class extends LitElement {
   constructor() {
     super(...arguments);
+    this.text = "";
     this.color = "primary";
     this.variant = "h1";
     this.font = "roboto";
@@ -28,19 +29,19 @@ let KaskusHeader = class extends LitElement {
     switch (this.variant) {
       case "h1":
         return html`
-          <h1 class="${this.getClass()}">${this.innerHTML}</h1>
+          <h1 class="${this.getClass()}">${this.text || this.innerHTML}</h1>
         `;
       case "h2":
         return html`
-          <h2 class="${this.getClass()}">${this.innerHTML}</h2>
+          <h2 class="${this.getClass()}">${this.text || this.innerHTML}</h2>
         `;
       case "h3":
         return html`
-          <h3 class="${this.getClass()}">${this.innerHTML}</h3>
+          <h3 class="${this.getClass()}">${this.text || this.innerHTML}</h3>
         `;
       case "h4":
         return html`
-          <h4 class="${this.getClass()}">${this.innerHTML}</h4>
+          <h4 class="${this.getClass()}">${this.text || this.innerHTML}</h4>
         `;
       default:
         return null;
@@ -49,48 +50,51 @@ let KaskusHeader = class extends LitElement {
 };
 KaskusHeader.styles = css`
     .roboto {
-      font-family : Roboto;
+      font-family: 'Roboto';
     }
     .vag {
-      font-family : VAGRounded;
+      font-family: 'VAGRounded';
     }
     h1{
-      font-size : 20px;
+      font-size: 20px;
     }
     h2{
-      font-size : 18px;
+      font-size: 18px;
     }
     h3{
-      font-size : 16px;
+      font-size: 16px;
     }
     h4{
-      font-size : 14px;
+      font-size: 14px;
     }
 
     .secondary{
-      color : ${color.secondaryGrey}
+      color: ${color.secondaryGrey}
     }
 
     .primary{
-      color : ${color.primaryGrey}
+      color: ${color.primaryGrey}
     }
 
     .tertiary{
-      color : ${color.tertiaryGrey}
+      color: ${color.tertiaryGrey}
     }
 
     .primary.nightmode{
-      color : ${color.primaryGreyNight}
+      color: ${color.primaryGreyNight}
     }
 
     .secondary.nightmode{
-      color : ${color.secondaryGreyNight}
+      color: ${color.secondaryGreyNight}
     }
 
     .tertiary.nightmode{
-      color : ${color.tertiaryGreyNight}
+      color: ${color.tertiaryGreyNight}
     }
   `;
+__decorateClass([
+  property({ type: String })
+], KaskusHeader.prototype, "text", 2);
 __decorateClass([
   property({ type: String })
 ], KaskusHeader.prototype, "color", 2);

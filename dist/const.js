@@ -1,9 +1,21 @@
 import { css } from "lit";
 const color = {
   primary: css`#0082c6`,
+  primaryHover: css`#0082c6b3`,
+  primaryLightHover: css`#0082c61a`,
+  primaryNight: css`#57acd9`,
+  primaryNightHover: css`#57acd9b3`,
+  primaryNightLightHover: css`#57acd966`,
   blue: css`#0082c6`,
+  blueHover: css`#0082c6b3`,
+  blueLightHover: css`0082c61a`,
+  blueNight: css`#57acd9`,
+  blueNightHover: css`#57acd9b3`,
+  blueNightLightHover: css`#57acd966`,
   red: css`#ed1b34`,
+  redNight: css`#e4555d`,
   yellow: css`#faa61a`,
+  yellowNight: css`#fdba4d`,
   white: css`#ffffff`,
   repGreen: css`#30c436`,
   repGreenLight: css`#60e38f`,
@@ -27,4 +39,14 @@ const color = {
   secondaryGreyNight: css`#c7c7c7`,
   tertiaryGreyNight: css`#5c5c5c`
 };
-export { color as c };
+const fontSize = {
+  default: css`16px`,
+  "size-1": css`8px`,
+  "size-2": css`10px`,
+  "size-3": css`12px`,
+  "size-4": css`14px`,
+  "size-5": css`16px`,
+  "size-6": css`18px`,
+  "size-7": css`20px`
+};
+export { color as c, fontSize as f };

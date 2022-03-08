@@ -1,7 +1,9 @@
 const customElementNames = {
   kaskusButton: "kaskus-button",
   kaskusHeader: "kaskus-header",
-  kaskusText: "kaskus-text"
+  kaskusText: "kaskus-text",
+  kaskusTab: "kaskus-tab",
+  kaskusIcon: "kaskus-icon"
 };
 function dynamicLoad(loaderList2) {
   var elements = Array.from(document.body.getElementsByTagName("*")).map((elem) => elem.tagName.toLowerCase());
@@ -17,7 +19,7 @@ function dynamicLoad(loaderList2) {
 const loaderList = [
   {
     customElementName: customElementNames.kaskusButton,
-    importLoader: () => import("./button.js")
+    importLoader: () => import("./index2.js")
   },
   {
     customElementName: customElementNames.kaskusHeader,
@@ -26,8 +28,21 @@ const loaderList = [
   {
     customElementName: customElementNames.kaskusText,
     importLoader: () => import("./text.js")
+  },
+  {
+    customElementName: customElementNames.kaskusTab,
+    importLoader: () => import("./tab.js")
+  },
+  {
+    customElementName: customElementNames.kaskusIcon,
+    importLoader: () => import("./icon.js")
   }
 ];
 dynamicLoad(loaderList);
 const reload = () => dynamicLoad(loaderList);
+window.eternal = {
+  reinit: () => {
+    reload();
+  }
+};
 export { customElementNames as c, reload as r };
