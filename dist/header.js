@@ -1,8 +1,6 @@
-import { LitElement, html, css } from "lit";
-import { property, customElement } from "lit/decorators.js";
-import { c as color } from "./const.js";
+import { s, $, r, c as customElementNames } from "./index.js";
+import { c as color, e, n } from "./const.js";
 import { n as night } from "./nightmode.js";
-import { c as customElementNames } from "./index.js";
 var __defProp = Object.defineProperty;
 var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
 var __decorateClass = (decorators, target, key, kind) => {
@@ -14,7 +12,7 @@ var __decorateClass = (decorators, target, key, kind) => {
     __defProp(target, key, result);
   return result;
 };
-let KaskusHeader = class extends LitElement {
+let KaskusHeader = class extends s {
   constructor() {
     super(...arguments);
     this.text = "";
@@ -28,19 +26,19 @@ let KaskusHeader = class extends LitElement {
   render() {
     switch (this.variant) {
       case "h1":
-        return html`
+        return $`
           <h1 class="${this.getClass()}">${this.text || this.innerHTML}</h1>
         `;
       case "h2":
-        return html`
+        return $`
           <h2 class="${this.getClass()}">${this.text || this.innerHTML}</h2>
         `;
       case "h3":
-        return html`
+        return $`
           <h3 class="${this.getClass()}">${this.text || this.innerHTML}</h3>
         `;
       case "h4":
-        return html`
+        return $`
           <h4 class="${this.getClass()}">${this.text || this.innerHTML}</h4>
         `;
       default:
@@ -48,7 +46,7 @@ let KaskusHeader = class extends LitElement {
     }
   }
 };
-KaskusHeader.styles = css`
+KaskusHeader.styles = r`
     .roboto {
       font-family: 'Roboto';
     }
@@ -93,18 +91,18 @@ KaskusHeader.styles = css`
     }
   `;
 __decorateClass([
-  property({ type: String })
+  e({ type: String })
 ], KaskusHeader.prototype, "text", 2);
 __decorateClass([
-  property({ type: String })
+  e({ type: String })
 ], KaskusHeader.prototype, "color", 2);
 __decorateClass([
-  property({ type: String })
+  e({ type: String })
 ], KaskusHeader.prototype, "variant", 2);
 __decorateClass([
-  property({ type: String })
+  e({ type: String })
 ], KaskusHeader.prototype, "font", 2);
 KaskusHeader = __decorateClass([
-  customElement(customElementNames.kaskusHeader)
+  n(customElementNames.kaskusHeader)
 ], KaskusHeader);
 export { KaskusHeader };

@@ -25,5 +25,5 @@ function switchNight() {
   }
 
   window.location.reload();
-  window.external.reinit();
+  window.eternal.reinit();
 }

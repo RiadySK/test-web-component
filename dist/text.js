@@ -1,8 +1,6 @@
-import { LitElement, html, css } from "lit";
-import { property, customElement } from "lit/decorators.js";
-import { c as color } from "./const.js";
+import { s, $, r, c as customElementNames } from "./index.js";
+import { c as color, e, n } from "./const.js";
 import { n as night } from "./nightmode.js";
-import { c as customElementNames } from "./index.js";
 var __defProp = Object.defineProperty;
 var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
 var __decorateClass = (decorators, target, key, kind) => {
@@ -14,10 +12,10 @@ var __decorateClass = (decorators, target, key, kind) => {
     __defProp(target, key, result);
   return result;
 };
-let KaskusText = class extends LitElement {
+let KaskusText = class extends s {
   constructor() {
     super(...arguments);
-    this.text = "primary";
+    this.text = "";
     this.color = "primary";
     this.variant = "paragraph";
     this.size = "medium";
@@ -28,11 +26,11 @@ let KaskusText = class extends LitElement {
   render() {
     switch (this.variant) {
       case "paragraph":
-        return html`
+        return $`
           <p class="${this.getClass()}">${this.text || this.innerHTML}</p>
         `;
       case "caption":
-        return html`
+        return $`
           <caption class="${this.getClass()}">${this.text || this.innerHTML}</caption>
         `;
       default:
@@ -40,7 +38,7 @@ let KaskusText = class extends LitElement {
     }
   }
 };
-KaskusText.styles = css`
+KaskusText.styles = r`
     :host {
       font-family : Roboto;
     }
@@ -83,18 +81,18 @@ KaskusText.styles = css`
     }
   `;
 __decorateClass([
-  property()
+  e()
 ], KaskusText.prototype, "text", 2);
 __decorateClass([
-  property()
+  e()
 ], KaskusText.prototype, "color", 2);
 __decorateClass([
-  property()
+  e()
 ], KaskusText.prototype, "variant", 2);
 __decorateClass([
-  property()
+  e()
 ], KaskusText.prototype, "size", 2);
 KaskusText = __decorateClass([
-  customElement(customElementNames.kaskusText)
+  n(customElementNames.kaskusText)
 ], KaskusText);
 export { KaskusText };

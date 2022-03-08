@@ -1,7 +1,5 @@
-import { LitElement, html, css } from "lit";
-import { property, customElement } from "lit/decorators.js";
-import { c as customElementNames } from "./index.js";
-import { c as color, f as fontSize } from "./const.js";
+import { s, $, r, c as customElementNames } from "./index.js";
+import { c as color, f as fontSize, e, n } from "./const.js";
 import { n as night } from "./nightmode.js";
 var __defProp = Object.defineProperty;
 var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
@@ -14,35 +12,37 @@ var __decorateClass = (decorators, target, key, kind) => {
     __defProp(target, key, result);
   return result;
 };
-let KaskusButton = class extends LitElement {
+let KaskusButton = class extends s {
   constructor() {
     super(...arguments);
     this.text = "";
     this.variant = "primary";
     this.size = "regular";
     this.disabled = false;
+    this.icon = false;
   }
   getClass() {
-    return this.variant + " " + this.size + " " + night;
+    return "button " + this.variant + " " + this.size + " " + night;
   }
   render() {
-    return html`
+    return $`
       <button
         class="${this.getClass()}"
         ?disabled=${this.disabled}
       >
+        ${this.icon && $`<kaskus-icon variant="${this.icon}" color="${this.variant}"></kaskus-icon>`}
         ${this.text}
       </button>
       <slot></slot>
     `;
   }
 };
-KaskusButton.styles = css`
+KaskusButton.styles = r`
     :host {
       color: blue;
     }
 
-    button {
+    .button {
       border-radius: 3px;
       max-width: 200px;
       cursor: pointer;
@@ -170,18 +170,21 @@ KaskusButton.styles = css`
     }
   `;
 __decorateClass([
-  property({ type: String })
+  e({ type: String })
 ], KaskusButton.prototype, "text", 2);
 __decorateClass([
-  property({ type: String })
+  e({ type: String })
 ], KaskusButton.prototype, "variant", 2);
 __decorateClass([
-  property({ type: String })
+  e({ type: String })
 ], KaskusButton.prototype, "size", 2);
 __decorateClass([
-  property({ type: Boolean })
+  e({ type: Boolean })
 ], KaskusButton.prototype, "disabled", 2);
+__decorateClass([
+  e({ type: String })
+], KaskusButton.prototype, "icon", 2);
 KaskusButton = __decorateClass([
-  customElement(customElementNames.kaskusButton)
+  n(customElementNames.kaskusButton)
 ], KaskusButton);
 export { KaskusButton };

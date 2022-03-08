@@ -1,9 +1,7 @@
-import { css, LitElement, html } from "lit";
-import { property, customElement } from "lit/decorators.js";
-import { c as customElementNames } from "./index.js";
-import { c as color } from "./const.js";
+import { r, s, $, c as customElementNames } from "./index.js";
+import { c as color, e, n } from "./const.js";
 import { n as night } from "./nightmode.js";
-const iconList = css`
+const iconList = r`
   .fa-500px::before {
     content: '\\f26e';
   }
@@ -8311,19 +8309,19 @@ var __decorateClass = (decorators, target, key, kind) => {
     __defProp(target, key, result);
   return result;
 };
-let KaskusIcon = class extends LitElement {
+let KaskusIcon = class extends s {
   constructor() {
     super(...arguments);
     this.variant = "";
     this.color = "grey";
     this.size = "medium";
-    this.type = false;
+    this.type = "regular";
   }
   getClass() {
     return `icon fa-${this.variant} ${this.size} ${this.color} ${this.type} ${night}`;
   }
   render() {
-    return html`
+    return $`
       <i class="${this.getClass()}" @click=${this._onClick}> </i>
       <slot></slot>
     `;
@@ -8333,7 +8331,7 @@ let KaskusIcon = class extends LitElement {
 };
 KaskusIcon.styles = [
   iconList,
-  css`
+  r`
       :host {
         display: flex;
         align-items: center;
@@ -8346,6 +8344,10 @@ KaskusIcon.styles = [
         position: relative;
         border-radius: 3px;
         overflow: hidden;
+      }
+
+      .outline {
+        border: 1px solid;
       }
 
       .small {
@@ -8364,52 +8366,70 @@ KaskusIcon.styles = [
       .blue {
         color: ${color.blue};
       }
-      .grey {
-        color: ${color.secondaryGrey};
-      }
-
-      .blue.nightmode {
-        color: ${color.blueNight};
-      }
-      .grey.nightmode {
-        color: ${color.secondaryGreyNight};
-      }
-
-      .outline {
-        border: 1px solid;
-      }
-
       .blue.solid {
         color: ${color.white};
         background-color: ${color.blue};
       }
-      .grey.solid {
-        color: ${color.white};
-        background-color: ${color.secondaryGrey};
+      .blue.nightmode {
+        color: ${color.blueNight};
       }
       .blue.solid.nightmode {
         color: ${color.white};
         background-color: ${color.blueNight};
       }
+      .blue:hover {
+        background-color: ${color.blueHover1};
+      }
+      .blue.solid:hover {
+        background-color: ${color.blueHover};
+      }
+      .blue.solid.nightmode:hover {
+        color: ${color.white};
+        background-color: ${color.blueNightHover};
+      }
+
+      .grey {
+        color: ${color.secondaryGrey};
+      }
+      .grey.solid {
+        color: ${color.white};
+        background-color: ${color.secondaryGrey};
+      }
+      .grey.nightmode {
+        color: ${color.secondaryGreyNight};
+      }
       .grey.solid.nightmode {
         color: ${color.white};
-        background-color: ${color.secondaryGreyNight};
+        background-color: ${color["grey-6"]};
+      }
+      .grey:hover {
+        background-color: ${color["grey-1"]};
+      }
+      .grey.solid:hover {
+        background-color: ${color["grey-4"]};
+      }
+      .grey.nightmode:hover {
+        background-color: ${color["grey-8"]};
+      }
+      .grey.solid.nightmode:hover {
+        color: ${color.white};
+        background-color: ${color["grey-5"]};
       }
     `
 ];
 __decorateClass([
-  property({ type: String })
+  e({ type: String })
 ], KaskusIcon.prototype, "variant", 2);
 __decorateClass([
-  property({ type: String })
+  e({ type: String })
 ], KaskusIcon.prototype, "color", 2);
 __decorateClass([
-  property({ type: String })
+  e({ type: String })
 ], KaskusIcon.prototype, "size", 2);
 __decorateClass([
-  property({ type: "solid" })
+  e({ type: "solid" })
 ], KaskusIcon.prototype, "type", 2);
 KaskusIcon = __decorateClass([
-  customElement(customElementNames.kaskusIcon)
+  n(customElementNames.kaskusIcon)
 ], KaskusIcon);
 export { KaskusIcon };

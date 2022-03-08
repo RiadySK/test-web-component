@@ -1,7 +1,5 @@
-import { LitElement, html, css } from "lit";
-import { property, customElement } from "lit/decorators.js";
-import { c as customElementNames } from "./index.js";
-import { c as color } from "./const.js";
+import { s, $, r, c as customElementNames } from "./index.js";
+import { c as color, e, n } from "./const.js";
 var __defProp = Object.defineProperty;
 var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
 var __decorateClass = (decorators, target, key, kind) => {
@@ -13,14 +11,14 @@ var __decorateClass = (decorators, target, key, kind) => {
     __defProp(target, key, result);
   return result;
 };
-let KaskusTab = class extends LitElement {
+let KaskusTab = class extends s {
   constructor() {
     super(...arguments);
     this.variant = "";
     this.text = "";
   }
   render() {
-    return html`
+    return $`
       <div @click=${this._onClick} class="tab ${this.variant}">
           <div class="text">${this.text}</div>
       </div>
@@ -29,7 +27,7 @@ let KaskusTab = class extends LitElement {
   _onClick() {
   }
 };
-KaskusTab.styles = css`
+KaskusTab.styles = r`
     .tab {
       padding : 0 16px 12px 16px;
       cursor : pointer;
@@ -50,12 +48,12 @@ KaskusTab.styles = css`
     }
   `;
 __decorateClass([
-  property()
+  e()
 ], KaskusTab.prototype, "variant", 2);
 __decorateClass([
-  property()
+  e()
 ], KaskusTab.prototype, "text", 2);
 KaskusTab = __decorateClass([
-  customElement(customElementNames.kaskusTab)
+  n(customElementNames.kaskusTab)
 ], KaskusTab);
 export { KaskusTab };
