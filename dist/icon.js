@@ -8344,6 +8344,9 @@ KaskusIcon.styles = [
         position: relative;
         border-radius: 3px;
         overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
       }
 
       .outline {
@@ -8352,12 +8355,21 @@ KaskusIcon.styles = [
 
       .small {
         padding: 4px;
+        font-size: 14px;
+        min-width: 14px;
+        min-height: 14px;
       }
       .medium {
         padding: 8px;
+        font-size: 16px;
+        min-width: 16px;
+        min-height: 16px;
       }
       .large {
         padding: 12px;
+        font-size: 18px;
+        min-width: 18px;
+        min-height: 18px;
       }
 
       .white {
@@ -8409,7 +8421,7 @@ KaskusIcon.styles = [
         background-color: ${color["grey-4"]};
       }
       .grey.nightmode:hover {
-        background-color: ${color["grey-8"]};
+        background-color: ${color["grey-7"]};
       }
       .grey.solid.nightmode:hover {
         color: ${color.white};
@@ -8424,7 +8436,7 @@ __decorateClass([
   e({ type: String })
 ], KaskusIcon.prototype, "color", 2);
 __decorateClass([
-  e({ type: String })
+  e({ type: "small" })
 ], KaskusIcon.prototype, "size", 2);
 __decorateClass([
   e({ type: "solid" })

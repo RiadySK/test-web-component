@@ -555,7 +555,8 @@ const customElementNames = {
   kaskusHeader: "kaskus-header",
   kaskusText: "kaskus-text",
   kaskusTab: "kaskus-tab",
-  kaskusIcon: "kaskus-icon"
+  kaskusIcon: "kaskus-icon",
+  kaskusSharer: "kaskus-sharer"
 };
 function dynamicLoad(loaderList2) {
   var elements = Array.from(document.body.getElementsByTagName("*")).map((elem) => elem.tagName.toLowerCase());
@@ -588,6 +589,10 @@ const loaderList = [
   {
     customElementName: customElementNames.kaskusIcon,
     importLoader: () => import("./icon.js")
+  },
+  {
+    customElementName: customElementNames.kaskusSharer,
+    importLoader: () => import("./index3.js")
   }
 ];
 dynamicLoad(loaderList);
