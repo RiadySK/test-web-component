@@ -1,6 +1,32 @@
+var __defProp2 = Object.defineProperty;
+var __defProps = Object.defineProperties;
+var __getOwnPropDescs = Object.getOwnPropertyDescriptors;
+var __getOwnPropSymbols = Object.getOwnPropertySymbols;
+var __hasOwnProp = Object.prototype.hasOwnProperty;
+var __propIsEnum = Object.prototype.propertyIsEnumerable;
+var __defNormalProp = (obj, key, value) => key in obj ? __defProp2(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
+var __spreadValues = (a, b) => {
+  for (var prop in b || (b = {}))
+    if (__hasOwnProp.call(b, prop))
+      __defNormalProp(a, prop, b[prop]);
+  if (__getOwnPropSymbols)
+    for (var prop of __getOwnPropSymbols(b)) {
+      if (__propIsEnum.call(b, prop))
+        __defNormalProp(a, prop, b[prop]);
+    }
+  return a;
+};
+var __spreadProps = (a, b) => __defProps(a, __getOwnPropDescs(b));
 import { s, $, r, c as customElementNames } from "./index.js";
-import { c as color, f as fontSize, e, n } from "./const.js";
-import { n as night } from "./nightmode.js";
+import { e, n as night, c as color, a as n } from "./nightmode.js";
+/**
+ * @license
+ * Copyright 2017 Google LLC
+ * SPDX-License-Identifier: BSD-3-Clause
+ */
+function t(t2) {
+  return e(__spreadProps(__spreadValues({}, t2), { state: true }));
+}
 var __defProp = Object.defineProperty;
 var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
 var __decorateClass = (decorators, target, key, kind) => {
@@ -12,179 +38,190 @@ var __decorateClass = (decorators, target, key, kind) => {
     __defProp(target, key, result);
   return result;
 };
-let KaskusButton = class extends s {
+let KaskusSharer = class extends s {
   constructor() {
     super(...arguments);
-    this.text = "";
-    this.variant = "primary";
-    this.size = "regular";
-    this.disabled = false;
-    this.icon = false;
+    this._isActive = false;
+    this.icon = "share";
+    this.color = "grey";
+    this.size = "medium";
+    this.type = "regular";
+    this.direction = "right";
+    this.url = "";
+    this.title = "";
+    this.description = "";
+    this.onClickFacebook = this._handleClickFacebook;
+    this.onClickMessenger = this._handleClickMessenger;
+    this.onClickWhatsapp = this._handleClickWhatsapp;
+    this.onClickTwitter = this._handleClickTwitter;
+    this.onClickLink = this._handleClickLink;
+    this._handleShare = () => {
+      if (window && navigator.share) {
+        navigator.share({
+          title: this.title || document.title,
+          text: this.description || window.location.href,
+          url: this.url || window.location.href
+        });
+      } else {
+        this._isActive = !this._isActive;
+      }
+    };
+  }
+  _handleClickFacebook() {
+    eval(`(${this.onClickFacebook})`);
+  }
+  _handleClickMessenger() {
+    eval(`(${this.onClickMessenger})`);
+  }
+  _handleClickWhatsapp() {
+    eval(`(${this.onClickWhatsapp})`);
+  }
+  _handleClickTwitter() {
+    eval(`(${this.onClickTwitter})`);
+  }
+  _handleClickLink() {
+    eval(`(${this.onClickLink})`);
+  }
+  shareItems() {
+    return $`
+      <div class="sharer-container">
+        <kaskus-icon
+          variant="facebook"
+          color="${this.color}"
+          size="${this.size}"
+          @click="${this._handleClickFacebook}"
+        ></kaskus-icon>
+        <kaskus-icon
+          variant="facebook-messenger"
+          color="${this.color}"
+          size="${this.size}"
+          @click="${this._handleClickMessenger}"
+        ></kaskus-icon>
+        <kaskus-icon
+          variant="whatsapp"
+          color="${this.color}"
+          size="${this.size}"
+          @click="${this._handleClickWhatsapp}"
+        ></kaskus-icon>
+        <kaskus-icon
+          variant="twitter"
+          color="${this.color}"
+          size="${this.size}"
+          @click="${this._handleClickTwitter}"
+        ></kaskus-icon>
+        <kaskus-icon
+          variant="link"
+          color="${this.color}"
+          size="${this.size}"
+          @click="${this._handleClickLink}"
+        ></kaskus-icon>
+      </div>
+    `;
   }
   getClass() {
-    return "button " + this.variant + " " + this.size + " " + night;
+    return `sharer ${this._isActive ? "active" : ""} ${this.direction} ${this.type} ${this.color} ${night}`;
   }
   render() {
     return $`
-      <button
+      <kaskus-icon
         class="${this.getClass()}"
-        ?disabled=${this.disabled}
+        variant="${this._isActive ? "times" : this.icon}"
+        type="${this.type}"
+        size="${this.size}"
+        color="${this.color}"
+        @click="${() => this._handleShare()}"
       >
-        ${this.icon && $`<kaskus-icon variant="${this.icon}" color="${this.variant}"></kaskus-icon>`}
-        ${this.text}
-      </button>
+        ${this.shareItems()}
+      </kaskus-icon>
       <slot></slot>
     `;
   }
 };
-KaskusButton.styles = r`
-    :host {
-      color: blue;
+KaskusSharer.styles = r`
+    .sharer {
+      position: relative;
     }
-
-    .button {
+    
+    .sharer-container {
+      position: absolute;
+      display: none;
+      z-index: 99;
+      overflow: hidden;
+      padding: 1px;
       border-radius: 3px;
-      max-width: 200px;
-      cursor: pointer;
+      background-color: ${color.white};
+    }
+
+    .active .sharer-container {
       display: flex;
-      justify-content: center;
-      align-items: center;
-      font-weight: 500;
+    }
+    .nightmode .sharer-container {
+      background-color: ${color["grey-8"]};
     }
 
-    .primary {
-      color: ${color.white};
-      background-color: ${color.primary};
-      border: solid 1px ${color.primary};
+    .grey.outline .sharer-container {
+      border: 1px solid ${color.secondaryGreyNight};
+    }
+    .blue.outline .sharer-container {
+      border: 1px solid ${color.blueNight};
     }
 
-    .primary:hover {
-      background-color: ${color.primaryHover};
-      border: solid 1px ${color.primaryHover};
+    .right .sharer-container {
+      left: 100%;
     }
-
-    .primary.nightmode {
-      background-color: ${color.primaryNight};
-      border: solid 1px ${color.primaryNight};
+    .left .sharer-container {
+      right: 100%;
     }
-
-    .primary.nightmode:hover {
-      background-color: ${color.primaryNightHover};
-      border: solid 1px ${color.primaryNightHover};
+    .top .sharer-container {
+      bottom: 100%;
     }
-
-    .secondary {
-      color: ${color.primary};
-      background-color: transparent;
-      border: solid 1px ${color.primary};
-    }
-
-    .secondary:hover {
-      background-color: ${color.primaryLightHover};
-    }
-
-    .secondary.nightmode {
-      color: ${color.primaryNight};
-      border: solid 1px ${color.primaryNight};
-    }
-
-    .secondary.nightmode:hover {
-      background-color: ${color.primaryNightLightHover};
-    }
-
-    .secondary-alt {
-      color: ${color.secondaryGrey};
-      background-color: transparent;
-      border: solid 1px ${color.secondaryGrey};
-    }
-
-    .secondary-alt:hover {
-      background-color: ${color["grey-1"]};
-    }
-
-    .secondary-alt.nightmode {
-      color: ${color.secondaryGreyNight};
-      border: solid 1px ${color.secondaryGreyNight};
-    }
-
-    .secondary-alt.nightmode:hover {
-      background-color: ${color["grey-5"]};
-    }
-
-    .disabled {
-      color: ${color.tertiaryGrey};
-      background-color: ${color["grey-2"]};
-      border: solid 1px ${color["grey-2"]};
-      cursor: default;
-    }
-
-    .disabled.nightmode {
-      color: ${color.tertiaryGreyNight};
-      background-color: ${color["grey-4"]};
-      border: solid 1px ${color["grey-4"]};
-    }
-
-    .disabled-alt {
-      color: ${color.tertiaryGrey};
-      background-color: ${color["grey-0"]};
-      border: solid 1px ${color["grey-4"]};
-      cursor: default;
-    }
-
-    .disabled-alt.nightmode {
-      color: ${color.tertiaryGreyNight};
-      background-color: ${color["grey-7"]};
-      border: solid 1px ${color["grey-5"]};
-    }
-
-    .text {
-      color: ${color.primary};
-      background-color: transparent;
-      border: none;
-    }
-
-    .text:hover {
-      text-decoration: underline;
-    }
-
-    .text.nightmode {
-      color: ${color.primaryNight};
-    }
-
-    .regular {
-      padding: 8px;
-      font-size: ${fontSize["size-4"]};
-      height: 36px;
-    }
-
-    .small {
-      padding: 4px;
-      font-size: ${fontSize["size-3"]};
-      height: 24px;
-    }
-
-    .large {
-      padding: 8px;
-      font-size: ${fontSize["size-6"]};
-      height: 36px;
+    .bottom .sharer-container {
+      top: 100%;
     }
   `;
 __decorateClass([
-  e({ type: String })
-], KaskusButton.prototype, "text", 2);
+  t()
+], KaskusSharer.prototype, "_isActive", 2);
 __decorateClass([
   e({ type: String })
-], KaskusButton.prototype, "variant", 2);
+], KaskusSharer.prototype, "icon", 2);
 __decorateClass([
   e({ type: String })
-], KaskusButton.prototype, "size", 2);
+], KaskusSharer.prototype, "color", 2);
 __decorateClass([
-  e({ type: Boolean })
-], KaskusButton.prototype, "disabled", 2);
+  e({ type: "small" })
+], KaskusSharer.prototype, "size", 2);
+__decorateClass([
+  e({ type: "solid" })
+], KaskusSharer.prototype, "type", 2);
+__decorateClass([
+  e({ type: "left" })
+], KaskusSharer.prototype, "direction", 2);
 __decorateClass([
   e({ type: String })
-], KaskusButton.prototype, "icon", 2);
-KaskusButton = __decorateClass([
-  n(customElementNames.kaskusButton)
-], KaskusButton);
-export { KaskusButton };
+], KaskusSharer.prototype, "url", 2);
+__decorateClass([
+  e({ type: String })
+], KaskusSharer.prototype, "title", 2);
+__decorateClass([
+  e({ type: String })
+], KaskusSharer.prototype, "description", 2);
+__decorateClass([
+  e()
+], KaskusSharer.prototype, "onClickFacebook", 2);
+__decorateClass([
+  e()
+], KaskusSharer.prototype, "onClickMessenger", 2);
+__decorateClass([
+  e()
+], KaskusSharer.prototype, "onClickWhatsapp", 2);
+__decorateClass([
+  e()
+], KaskusSharer.prototype, "onClickTwitter", 2);
+__decorateClass([
+  e()
+], KaskusSharer.prototype, "onClickLink", 2);
+KaskusSharer = __decorateClass([
+  n(customElementNames.kaskusSharer)
+], KaskusSharer);
+export { KaskusSharer };

@@ -1,6 +1,5 @@
 import { s, $, r, c as customElementNames } from "./index.js";
-import { c as color, e, n } from "./const.js";
-import { n as night } from "./nightmode.js";
+import { n as night, c as color, e, a as n } from "./nightmode.js";
 var __defProp = Object.defineProperty;
 var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
 var __decorateClass = (decorators, target, key, kind) => {

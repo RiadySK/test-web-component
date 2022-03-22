@@ -572,7 +572,7 @@ function dynamicLoad(loaderList2) {
 const loaderList = [
   {
     customElementName: customElementNames.kaskusButton,
-    importLoader: () => import("./index2.js")
+    importLoader: () => import("./buttons.js")
   },
   {
     customElementName: customElementNames.kaskusHeader,
@@ -592,7 +592,7 @@ const loaderList = [
   },
   {
     customElementName: customElementNames.kaskusSharer,
-    importLoader: () => import("./index3.js")
+    importLoader: () => import("./index2.js")
   }
 ];
 dynamicLoad(loaderList);

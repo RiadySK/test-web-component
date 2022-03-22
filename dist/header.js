@@ -1,6 +1,5 @@
 import { s, $, r, c as customElementNames } from "./index.js";
-import { c as color, e, n } from "./const.js";
-import { n as night } from "./nightmode.js";
+import { n as night, c as color, e, a as n } from "./nightmode.js";
 var __defProp = Object.defineProperty;
 var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
 var __decorateClass = (decorators, target, key, kind) => {
@@ -19,9 +18,10 @@ let KaskusHeader = class extends s {
     this.color = "primary";
     this.variant = "h1";
     this.font = "roboto";
+    this.weight = "normal";
   }
   getClass() {
-    return this.font + " " + this.color + " " + night;
+    return this.font + " " + this.color + " " + this.weight + " " + night;
   }
   render() {
     switch (this.variant) {
@@ -53,55 +53,70 @@ KaskusHeader.styles = r`
     .vag {
       font-family: 'VAGRounded';
     }
-    h1{
+    h1,
+    h2,
+    h3,
+    h4 {
+      margin: 0;
+    }
+    h1 {
       font-size: 20px;
     }
-    h2{
+    h2 {
       font-size: 18px;
     }
-    h3{
+    h3 {
       font-size: 16px;
     }
-    h4{
+    h4 {
       font-size: 14px;
     }
 
-    .secondary{
-      color: ${color.secondaryGrey}
+    .light {
+      font-weight: light;
+    }
+    .normal {
+      font-weight: normal;
+    }
+    .bold {
+      font-weight: bold;
     }
 
-    .primary{
-      color: ${color.primaryGrey}
+    .primary {
+      color: ${color.primaryGrey};
+    }
+    .secondary {
+      color: ${color.secondaryGrey};
+    }
+    .tertiary {
+      color: ${color.tertiaryGrey};
     }
 
-    .tertiary{
-      color: ${color.tertiaryGrey}
+    .primary.nightmode {
+      color: ${color.primaryGreyNight};
     }
-
-    .primary.nightmode{
-      color: ${color.primaryGreyNight}
+    .secondary.nightmode {
+      color: ${color.secondaryGreyNight};
     }
-
-    .secondary.nightmode{
-      color: ${color.secondaryGreyNight}
-    }
-
-    .tertiary.nightmode{
-      color: ${color.tertiaryGreyNight}
+    .tertiary.nightmode {
+      color: ${color.tertiaryGreyNight};
     }
   `;
 __decorateClass([
   e({ type: String })
 ], KaskusHeader.prototype, "text", 2);
 __decorateClass([
-  e({ type: String })
+  e({ type: "primary" })
 ], KaskusHeader.prototype, "color", 2);
 __decorateClass([
-  e({ type: String })
+  e({ type: "h1" })
 ], KaskusHeader.prototype, "variant", 2);
 __decorateClass([
-  e({ type: String })
+  e({ type: "roboto" })
 ], KaskusHeader.prototype, "font", 2);
+__decorateClass([
+  e({ type: "light" })
+], KaskusHeader.prototype, "weight", 2);
 KaskusHeader = __decorateClass([
   n(customElementNames.kaskusHeader)
 ], KaskusHeader);

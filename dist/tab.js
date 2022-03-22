@@ -1,5 +1,5 @@
 import { s, $, r, c as customElementNames } from "./index.js";
-import { c as color, e, n } from "./const.js";
+import { n as night, c as color, e, a as n } from "./nightmode.js";
 var __defProp = Object.defineProperty;
 var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
 var __decorateClass = (decorators, target, key, kind) => {
@@ -17,10 +17,13 @@ let KaskusTab = class extends s {
     this.variant = "";
     this.text = "";
   }
+  getClass() {
+    return "tab " + this.variant + " " + night;
+  }
   render() {
     return $`
-      <div @click=${this._onClick} class="tab ${this.variant}">
-          <div class="text">${this.text}</div>
+      <div @click=${this._onClick} class=${this.getClass()}>
+        <div class="text">${this.text}</div>
       </div>
     `;
   }
@@ -29,22 +32,31 @@ let KaskusTab = class extends s {
 };
 KaskusTab.styles = r`
     .tab {
-      padding : 0 16px 12px 16px;
+      padding : 12px 16px;
       cursor : pointer;
       display : inline-block;
       border-bottom: 3px solid transparent;
       margin-right: -4px;
     }
+
     .text{
-      color : ${color["grey-4"]};
-      font-family : Roboto;
       font-size : 14px;
+      font-family : 'Roboto';
+      color : ${color["grey-4"]};
     }
+    
     .tab:hover .text, .selected .text{
-      color : ${color.primary};
+      color : ${color.blue};
     }
-    .tab:hover, .selected{
+    .tab:hover, .selected {
       border-bottom: 3px solid ${color.blue};
+    }
+
+    .tab.nightmode:hover .text, .selected.nightmode .text{
+      color : ${color.blueNight};
+    }
+    .tab.nightmode:hover, .selected.nightmode {
+      border-bottom: 3px solid ${color.blueNight};
     }
   `;
 __decorateClass([

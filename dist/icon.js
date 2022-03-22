@@ -1,6 +1,5 @@
 import { r, s, $, c as customElementNames } from "./index.js";
-import { c as color, e, n } from "./const.js";
-import { n as night } from "./nightmode.js";
+import { n as night, c as color, e, a as n } from "./nightmode.js";
 const iconList = r`
   .fa-500px::before {
     content: '\\f26e';
@@ -8316,9 +8315,10 @@ let KaskusIcon = class extends s {
     this.color = "grey";
     this.size = "medium";
     this.type = "regular";
+    this.noClick = false;
   }
   getClass() {
-    return `icon fa-${this.variant} ${this.size} ${this.color} ${this.type} ${night}`;
+    return `icon fa-${this.variant} ${this.size} ${this.color} ${this.type} ${this.noClick ? "noclick" : ""} ${night}`;
   }
   render() {
     return $`
@@ -8347,6 +8347,8 @@ KaskusIcon.styles = [
         display: flex;
         align-items: center;
         justify-content: center;
+        width: 20px;
+        height: 20px;
       }
 
       .outline {
@@ -8427,13 +8429,17 @@ KaskusIcon.styles = [
         color: ${color.white};
         background-color: ${color["grey-5"]};
       }
+
+      .noclick{
+        pointer-events: none;
+      }
     `
 ];
 __decorateClass([
   e({ type: String })
 ], KaskusIcon.prototype, "variant", 2);
 __decorateClass([
-  e({ type: String })
+  e({ type: "grey" })
 ], KaskusIcon.prototype, "color", 2);
 __decorateClass([
   e({ type: "small" })
@@ -8441,6 +8447,9 @@ __decorateClass([
 __decorateClass([
   e({ type: "solid" })
 ], KaskusIcon.prototype, "type", 2);
+__decorateClass([
+  e({ type: Boolean })
+], KaskusIcon.prototype, "noClick", 2);
 KaskusIcon = __decorateClass([
   n(customElementNames.kaskusIcon)
 ], KaskusIcon);
