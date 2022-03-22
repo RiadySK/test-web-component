@@ -565,34 +565,36 @@ function dynamicLoad(loaderList2) {
   });
   loaderList2.forEach((loader) => {
     if (uniqueElements.includes(loader.customElementName)) {
-      loader.importLoader();
+      loader.importLoaderList.forEach((importLoader) => {
+        importLoader();
+      });
     }
   });
 }
 const loaderList = [
   {
     customElementName: customElementNames.kaskusButton,
-    importLoader: () => import("./buttons.js")
+    importLoaderList: [() => import("./buttons.js")]
   },
   {
     customElementName: customElementNames.kaskusHeader,
-    importLoader: () => import("./header.js")
+    importLoaderList: [() => import("./header.js")]
   },
   {
     customElementName: customElementNames.kaskusText,
-    importLoader: () => import("./text.js")
+    importLoaderList: [() => import("./text.js")]
   },
   {
     customElementName: customElementNames.kaskusTab,
-    importLoader: () => import("./tab.js")
+    importLoaderList: [() => import("./tab.js")]
   },
   {
     customElementName: customElementNames.kaskusIcon,
-    importLoader: () => import("./icon.js")
+    importLoaderList: [() => import("./icon.js")]
   },
   {
     customElementName: customElementNames.kaskusSharer,
-    importLoader: () => import("./index2.js")
+    importLoaderList: [() => import("./index2.js"), () => import("./icon.js")]
   }
 ];
 dynamicLoad(loaderList);
